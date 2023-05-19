@@ -11,19 +11,22 @@ const getExtensionsMetaData = () => {
 };
 
 const getExtensionData = (extensionsMetaData) => {
-  return extensionsMetaData.map((extensionMetaData) => {
-    const extensionFullName = extensionMetaData.identifier.id;
-    // ex: streetsidesoftware.code-spell-checker
-    const extensionFullNameSplit = extensionFullName.split(".");
+  return extensionsMetaData
+    .map((extensionMetaData) => {
+      const extensionFullName = extensionMetaData.identifier.id;
+      // ex: streetsidesoftware.code-spell-checker
+      const extensionFullNameSplit = extensionFullName.split(".");
 
-    if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 2)
-      throw new Error("Wrong Extension Name Format");
+      if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 2) {
+        return "IS_WRONG_NAME_FORMAT";
+      }
 
-    return {
-      extensionName: extensionFullNameSplit[1],
-      extensionVersion: extensionMetaData.version,
-    };
-  });
+      return {
+        extensionName: extensionFullNameSplit[1],
+        extensionVersion: extensionMetaData.version,
+      };
+    })
+    .filter((extensionData) => extensionData !== "IS_WRONG_NAME_FORMAT");
 };
 
 try {
