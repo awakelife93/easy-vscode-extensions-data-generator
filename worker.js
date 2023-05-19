@@ -1,20 +1,21 @@
 const fs = require("fs");
 const path = require("path");
-const folderPath = `${__dirname}/outputs`;
-const errors = {
+
+const FOLDER_PATH = `${__dirname}/outputs`;
+const ERRORS = {
   IS_EMPTY_EXTENSIONS_DATA: "IS_EMPTY_EXTENSIONS_DATA",
   IS_WRONG_NAME_FORMAT: "IS_WRONG_EXTENSION_NAME_FORMAT",
 };
 
 const createExportFolder = () => {
-  if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
+  if (!fs.existsSync(FOLDER_PATH)) fs.mkdirSync(FOLDER_PATH);
 };
 
 const createExtensionsDataJson = (extensionData) => {
-  if (!extensionData) throw new Error(errors.IS_EMPTY_EXTENSIONS_DATA);
+  if (!extensionData) throw new Error(ERRORS.IS_EMPTY_EXTENSIONS_DATA);
 
   fs.writeFileSync(
-    path.join(`${folderPath}/${new Date()}_extensions_data.json`),
+    path.join(`${FOLDER_PATH}/${new Date()}_extensions_data.json`),
     JSON.stringify(extensionData)
   );
 };
@@ -43,7 +44,7 @@ const getExtensionData = (extensionsMetaData) => {
       const extensionFullNameSplit = extensionFullName.split(".");
 
       if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 2) {
-        return errors.IS_WRONG_NAME_FORMAT;
+        return ERRORS.IS_WRONG_NAME_FORMAT;
       }
 
       return {
@@ -51,7 +52,7 @@ const getExtensionData = (extensionsMetaData) => {
         extensionVersion: extensionMetaData.version,
       };
     })
-    .filter((extensionData) => extensionData !== errors.IS_WRONG_NAME_FORMAT);
+    .filter((extensionData) => extensionData !== ERRORS.IS_WRONG_NAME_FORMAT);
 };
 
 try {
