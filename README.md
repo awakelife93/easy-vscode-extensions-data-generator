@@ -14,6 +14,7 @@ Example Output
   { extensionName: "npm-intellisense", extensionVersion: "1.4.4" },
   { extensionName: "vscode-color", extensionVersion: "0.4.5" },
   { extensionName: "npm", extensionVersion: "1.3.0" },
+  ...
 ];
 ```
 
