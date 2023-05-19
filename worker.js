@@ -16,7 +16,7 @@ const getExtensionData = (extensionsMetaData) => {
     // ex: streetsidesoftware.code-spell-checker
     const extensionFullNameSplit = extensionFullName.split(".");
 
-    if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 1)
+    if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 2)
       throw new Error("Wrong Extension Name Format");
 
     return {
