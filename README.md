@@ -20,6 +20,18 @@ Example Output
 
 - This module basically uses the path based on the Mac operating system as a default value. Modify the path value to match your operating system.
 
+```javascript
+const getExtensionsMetaData = () => {
+  const currentExtensionsPath = ""; // Just enter your vscode extensions.json path here.
+  const defaultExtensionsPathForMac = `${process.env.HOME}/.vscode/extensions/extensions.json`;
+  const extensionsMetaDataJson = fs.readFileSync(
+    currentExtensionsPath || defaultExtensionsPathForMac,
+    "utf8"
+  );
+  return JSON.parse(extensionsMetaDataJson);
+};
+```
+
 ## Author
 
 ```
