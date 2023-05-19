@@ -34,6 +34,8 @@ const getExtensionsMetaData = () => {
 };
 ```
 
+- Create a json file in the project root outputs folder.
+
 ## Author
 
 ```

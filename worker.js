@@ -1,4 +1,23 @@
 const fs = require("fs");
+const path = require("path");
+
+const createExportFolder = () => {
+  const folderPath = `${__dirname}/outputs`;
+  if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
+};
+
+const createExtensionsDataJson = (extensionData) => {
+  const folderPath = `${__dirname}/outputs`;
+  fs.writeFileSync(
+    path.join(`${folderPath}/${new Date()}_extensions_data.json`),
+    JSON.stringify(extensionData)
+  );
+};
+
+const exportExtensionsDataJson = (extensionData) => {
+  createExportFolder();
+  createExtensionsDataJson(extensionData);
+};
 
 const getExtensionsMetaData = () => {
   const currentExtensionsPath = "";
@@ -7,6 +26,7 @@ const getExtensionsMetaData = () => {
     currentExtensionsPath || defaultExtensionsPathForMac,
     "utf8"
   );
+
   return JSON.parse(extensionsMetaDataJson);
 };
 
@@ -33,7 +53,7 @@ try {
   const extensionsMetaData = getExtensionsMetaData();
   const extensionData = getExtensionData(extensionsMetaData);
 
-  console.log("output ====>", extensionData);
+  exportExtensionsDataJson(extensionData);
 } catch (error) {
   console.error("Generate Extensions Name List Failed", error);
 }
