@@ -2,7 +2,8 @@
 
 ## [Note]
 
-- This project is a project created to extract extensions information that may be installed differently for each device without synchronizing vscode settings.
+- For those who are out of sync with vscode
+  - This project is a project created to extract extensions information that may be installed differently for each device without synchronizing vscode settings.
 
 ```javascript
 Example Output
