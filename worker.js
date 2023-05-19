@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const FOLDER_PATH = `${__dirname}/outputs`;
+const FOLDER_PATH = path.join(__dirname, "outputs");
 const ERRORS = {
   IS_EMPTY_EXTENSIONS_DATA: "IS_EMPTY_EXTENSIONS_DATA",
   IS_WRONG_NAME_FORMAT: "IS_WRONG_EXTENSION_NAME_FORMAT",
@@ -15,7 +15,7 @@ const createExtensionsDataJson = (extensionData) => {
   if (!extensionData) throw new Error(ERRORS.IS_EMPTY_EXTENSIONS_DATA);
 
   fs.writeFileSync(
-    path.join(`${FOLDER_PATH}/${new Date()}_extensions_data.json`),
+    path.join(FOLDER_PATH, `${new Date()}_extensions_data.json`),
     JSON.stringify(extensionData)
   );
 };
