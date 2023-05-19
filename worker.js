@@ -1,13 +1,18 @@
 const fs = require("fs");
 const path = require("path");
+const folderPath = `${__dirname}/outputs`;
+const errors = {
+  IS_EMPTY_EXTENSIONS_DATA: "IS_EMPTY_EXTENSIONS_DATA",
+  IS_WRONG_NAME_FORMAT: "IS_WRONG_EXTENSION_NAME_FORMAT",
+};
 
 const createExportFolder = () => {
-  const folderPath = `${__dirname}/outputs`;
   if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
 };
 
 const createExtensionsDataJson = (extensionData) => {
-  const folderPath = `${__dirname}/outputs`;
+  if (!extensionData) throw new Error(errors.IS_EMPTY_EXTENSIONS_DATA);
+
   fs.writeFileSync(
     path.join(`${folderPath}/${new Date()}_extensions_data.json`),
     JSON.stringify(extensionData)
@@ -38,7 +43,7 @@ const getExtensionData = (extensionsMetaData) => {
       const extensionFullNameSplit = extensionFullName.split(".");
 
       if (!extensionFullNameSplit.length || extensionFullNameSplit.length < 2) {
-        return "IS_WRONG_NAME_FORMAT";
+        return errors.IS_WRONG_NAME_FORMAT;
       }
 
       return {
@@ -46,7 +51,7 @@ const getExtensionData = (extensionsMetaData) => {
         extensionVersion: extensionMetaData.version,
       };
     })
-    .filter((extensionData) => extensionData !== "IS_WRONG_NAME_FORMAT");
+    .filter((extensionData) => extensionData !== errors.IS_WRONG_NAME_FORMAT);
 };
 
 try {
