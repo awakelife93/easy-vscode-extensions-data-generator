@@ -25,6 +25,7 @@ const getExtensionData = (extensionsMetaData) => {
     };
   });
 };
+
 try {
   const extensionsMetaData = getExtensionsMetaData();
   const extensionData = getExtensionData(extensionsMetaData);
