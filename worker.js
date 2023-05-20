@@ -1,19 +1,19 @@
 const fs = require("fs");
 const path = require("path");
 
-const FOLDER_PATH = path.join(__dirname, "outputs");
+const EXPORT_FOLDER_PATH = path.join(__dirname, "outputs");
 const ERRORS = {
   IS_EMPTY_EXTENSIONS_DATA: "IS_EMPTY_EXTENSIONS_DATA",
   IS_WRONG_NAME_FORMAT: "IS_WRONG_EXTENSION_NAME_FORMAT",
 };
 
 const createExportFolder = () => {
-  if (!fs.existsSync(FOLDER_PATH)) fs.mkdirSync(FOLDER_PATH);
+  if (!fs.existsSync(EXPORT_FOLDER_PATH)) fs.mkdirSync(EXPORT_FOLDER_PATH);
 };
 
 const createExtensionsDataJson = (extensionData) => {
   fs.writeFileSync(
-    path.join(FOLDER_PATH, `${new Date()}_extensions_data.json`),
+    path.join(EXPORT_FOLDER_PATH, `${new Date()}_extensions_data.json`),
     JSON.stringify(extensionData)
   );
 };
