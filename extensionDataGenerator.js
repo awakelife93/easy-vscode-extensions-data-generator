@@ -55,10 +55,10 @@ const getExtensionData = (extensionsMetaData) => {
     .filter((extensionData) => extensionData !== ERRORS.IS_WRONG_NAME_FORMAT);
 };
 
-try {
+const extensionDataGenerator = () => {
   const extensionsMetaData = getExtensionsMetaData();
   const extensionData = getExtensionData(extensionsMetaData);
   exportExtensionsDataJson(extensionData);
-} catch (error) {
-  console.error("Generate Extensions Data Json Failed", error);
-}
+};
+
+module.exports = extensionDataGenerator;

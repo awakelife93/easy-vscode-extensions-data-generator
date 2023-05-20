@@ -44,10 +44,10 @@ const getExtensionsMetaData = () => {
 Author: Hyunwoo Park
 ```
 
-## Getting Started
+## Sample Check
 
 ```
-1. yarn or npm start
+1. yarn sample or npm run sample
 ```
 
 #
