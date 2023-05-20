@@ -30,6 +30,7 @@ const getExtensionsMetaData = () => {
     currentExtensionsPath || defaultExtensionsPathForMac,
     "utf8"
   );
+
   return JSON.parse(extensionsMetaDataJson);
 };
 ```
