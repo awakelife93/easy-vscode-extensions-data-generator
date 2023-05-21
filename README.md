@@ -22,7 +22,7 @@ Example Output
 
 - This module basically uses the path based on the Mac operating system as a default value. Modify the path value to match your operating system.
 
-### Parameter
+### Options
 
 ```javascript
 extensionDataGenerator({
