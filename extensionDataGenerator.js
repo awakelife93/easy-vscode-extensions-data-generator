@@ -1,36 +1,47 @@
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
-const EXPORT_FOLDER_PATH = path.join(__dirname, "outputs");
 const ERRORS = {
   IS_EMPTY_EXTENSIONS_DATA: "IS_EMPTY_EXTENSIONS_DATA",
   IS_WRONG_NAME_FORMAT: "IS_WRONG_EXTENSION_NAME_FORMAT",
 };
 
-const createExportFolder = () => {
-  if (!fs.existsSync(EXPORT_FOLDER_PATH)) fs.mkdirSync(EXPORT_FOLDER_PATH);
+const defaultExtensionsJsonPathByOS = () => {
+  const platform = os.platform();
+  // todo: add many os...
+  const pathByPlatform = {
+    darwin: `${process.env.HOME}/.vscode/extensions/extensions.json`,
+  };
+
+  return (
+    pathByPlatform[platform] ??
+    `${process.env.HOME}/.vscode/extensions/extensions.json`
+  );
 };
 
-const createExtensionsDataJson = (extensionData) => {
+const createExportFolder = (exportPath) => {
+  if (!fs.existsSync(exportPath)) fs.mkdirSync(exportPath);
+};
+
+const createExtensionsDataJson = (extensionData, exportPath) => {
   fs.writeFileSync(
-    path.join(EXPORT_FOLDER_PATH, `${new Date()}_extensions_data.json`),
+    path.join(exportPath, `${new Date()}_extensions_data.json`),
     JSON.stringify(extensionData)
   );
 };
 
-const exportExtensionsDataJson = (extensionData) => {
+const exportExtensionsDataJson = (extensionData, exportPath) => {
   if (extensionData.length < 1)
     throw new Error(ERRORS.IS_EMPTY_EXTENSIONS_DATA);
 
-  createExportFolder();
-  createExtensionsDataJson(extensionData);
+  createExportFolder(exportPath);
+  createExtensionsDataJson(extensionData, exportPath);
 };
 
-const getExtensionsMetaData = () => {
-  const currentExtensionsPath = "";
-  const defaultExtensionsPathForMac = `${process.env.HOME}/.vscode/extensions/extensions.json`;
+const getExtensionsMetaData = (extensionsJsonPath) => {
   const extensionsMetaDataJsonString = fs.readFileSync(
-    currentExtensionsPath || defaultExtensionsPathForMac,
+    extensionsJsonPath,
     "utf8"
   );
 
@@ -41,7 +52,8 @@ const getExtensionData = (extensionsMetaData) => {
   return extensionsMetaData
     .map((extensionMetaData) => {
       const extensionFullName = extensionMetaData.identifier.id;
-      const extensionFullNameSplit = extensionFullName.split("."); // ex: streetsidesoftware.code-spell-checker -> ["streetsidesoftware", "code-spell-checker"]
+      const extensionFullNameSplit = extensionFullName.split(".");
+      // ex: streetsidesoftware.code-spell-checker -> ["streetsidesoftware", "code-spell-checker"]
 
       if (extensionFullNameSplit.length < 2) {
         return ERRORS.IS_WRONG_NAME_FORMAT;
@@ -55,10 +67,25 @@ const getExtensionData = (extensionsMetaData) => {
     .filter((extensionData) => extensionData !== ERRORS.IS_WRONG_NAME_FORMAT);
 };
 
-const extensionDataGenerator = () => {
-  const extensionsMetaData = getExtensionsMetaData();
-  const extensionData = getExtensionData(extensionsMetaData);
-  exportExtensionsDataJson(extensionData);
+const extensionDataGenerator = ({
+  origin = false,
+  exportPath = undefined,
+  extensionsJsonPath = undefined,
+} = {}) => {
+  if (!exportPath) {
+    const defaultExportPath = path.join(__dirname, "outputs");
+    exportPath = defaultExportPath;
+  }
+
+  if (!extensionsJsonPath) {
+    extensionsJsonPath = defaultExtensionsJsonPathByOS();
+  }
+
+  const extensionsMetaData = getExtensionsMetaData(extensionsJsonPath);
+  const extensionData = origin
+    ? extensionsMetaData
+    : getExtensionData(extensionsMetaData);
+  exportExtensionsDataJson(extensionData, exportPath);
 };
 
 module.exports = extensionDataGenerator;

@@ -22,20 +22,15 @@ Example Output
 
 - This module basically uses the path based on the Mac operating system as a default value. Modify the path value to match your operating system.
 
+### Parameter
+
 ```javascript
-const getExtensionsMetaData = () => {
-  const currentExtensionsPath = ""; // Just enter your vscode extensions.json path here.
-  const defaultExtensionsPathForMac = `${process.env.HOME}/.vscode/extensions/extensions.json`;
-  const extensionsMetaDataJson = fs.readFileSync(
-    currentExtensionsPath || defaultExtensionsPathForMac,
-    "utf8"
-  );
-
-  return JSON.parse(extensionsMetaDataJson);
-};
+extensionDataGenerator({
+  origin: true, // Default is false, and this option exports the extensions metadata as it is.
+  exportPath: undefined, // Default is outputs folder in Project root
+  extensionsJsonPath: undefined, // The default value of this option is vscode path on mac os, please put your correct path.
+});
 ```
-
-- Create a json file in the project root outputs folder.
 
 ## Author
 
