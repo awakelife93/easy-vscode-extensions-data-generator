@@ -8,6 +8,7 @@ try {
     // The default value of this option is vscode path on mac os, please put your correct path.
     extensionsJsonPath: undefined,
   };
+
   extensionDataGenerator(options);
 } catch (error) {
   console.error("Generate Extensions Data Json Failed", error);

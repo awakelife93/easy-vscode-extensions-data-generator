@@ -34,6 +34,7 @@ const options = {
   // The default value of this option is vscode path on mac os, please put your correct path.
   extensionsJsonPath: undefined,
 };
+
 extensionDataGenerator(options);
 ```
 

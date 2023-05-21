@@ -72,14 +72,16 @@ const extensionDataGenerator = ({
   exportPath = undefined,
   extensionsJsonPath = undefined,
 } = {}) => {
-  exportPath = exportPath ?? path.join(__dirname, "outputs");
-  extensionsJsonPath = extensionsJsonPath ?? defaultExtensionsJsonPathByOS();
+  const _exportPath = exportPath ?? path.join(__dirname, "outputs");
+  const _extensionsJsonPath =
+    extensionsJsonPath ?? defaultExtensionsJsonPathByOS();
 
-  const extensionsMetaData = getExtensionsMetaData(extensionsJsonPath);
+  const extensionsMetaData = getExtensionsMetaData(_extensionsJsonPath);
   const extensionData = origin
     ? extensionsMetaData
     : getExtensionData(extensionsMetaData);
-  exportExtensionsDataJson(extensionData, exportPath);
+
+  exportExtensionsDataJson(extensionData, _exportPath);
 };
 
 module.exports = extensionDataGenerator;
