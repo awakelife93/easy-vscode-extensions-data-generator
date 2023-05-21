@@ -9,15 +9,13 @@ const ERRORS = {
 
 const defaultExtensionsJsonPathByOS = () => {
   const platform = os.platform();
+  const macExtensionsJsonPath = `${process.env.HOME}/.vscode/extensions/extensions.json`;
   // todo: add many os...
   const pathByPlatform = {
-    darwin: `${process.env.HOME}/.vscode/extensions/extensions.json`,
+    darwin: macExtensionsJsonPath,
   };
 
-  return (
-    pathByPlatform[platform] ??
-    `${process.env.HOME}/.vscode/extensions/extensions.json`
-  );
+  return pathByPlatform[platform] ?? macExtensionsJsonPath;
 };
 
 const createExportFolder = (exportPath) => {
