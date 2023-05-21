@@ -33,7 +33,7 @@ const options = {
   extensionsJsonPath: undefined,
 };
 
-extensionDataGenerator(options);
+extensionsDataGenerator(options);
 ```
 
 ## Author
