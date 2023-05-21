@@ -20,8 +20,6 @@ Example Output
 
 ### Description
 
-- This module basically uses the path based on the Mac operating system as a default value. Modify the path value to match your operating system.
-
 ### Options
 
 ```javascript
@@ -31,7 +29,7 @@ const options = {
   origin: false,
   // Default is outputs folder in Project root
   exportPath: undefined,
-  // The default value of this option is vscode path on mac os, please put your correct path.
+  // The default value of this option is default vscode path, please put your correct path.
   extensionsJsonPath: undefined,
 };
 
