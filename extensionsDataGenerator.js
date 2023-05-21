@@ -33,6 +33,7 @@ const defaultExtensionsJsonPathByOS = () => {
   };
 
   const extensionsJsonPath = pathByPlatform[platform];
+
   if (!extensionsJsonPath) {
     throw new Error(ERRORS.IS_EMPTY_DEFAULT_EXTENSIONS_JSON_PATH);
   }
