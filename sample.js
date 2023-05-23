@@ -1,3 +1,5 @@
+"use strict";
+
 try {
   const extensionsDataGenerator = require("./extensionsDataGenerator");
   const options = {
