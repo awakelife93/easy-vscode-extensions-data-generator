@@ -3,18 +3,29 @@
 ## [Note]
 
 - For those who are out of sync with vscode
+
   - This project is a project created to extract extensions information that may be installed differently for each device without synchronizing vscode settings.
 
-```javascript
-Example Output
+- Example Output
+
+```json
 [
-  { extensionName: "auto-close-tag", extensionVersion: "0.5.14" },
-  { extensionName: "code-spell-checker", extensionVersion: "2.20.4" },
-  { extensionName: "material-icon-theme", extensionVersion: "4.27.0" },
-  { extensionName: "npm-intellisense", extensionVersion: "1.4.4" },
-  { extensionName: "vscode-color", extensionVersion: "0.4.5" },
-  { extensionName: "npm", extensionVersion: "1.3.0" },
-  ...
+  {
+    "extensionName": "auto-close-tag",
+    "extensionVersion": "0.5.14",
+    "extensionInstallTimestamp": 1683018107952
+  },
+  {
+    "extensionName": "code-spell-checker",
+    "extensionVersion": "2.20.4",
+    "extensionInstallTimestamp": 1683018140623
+  },
+  {
+    "extensionName": "material-icon-theme",
+    "extensionVersion": "4.27.0",
+    "extensionInstallTimestamp": 1683018160937
+  },
+  // ...
 ];
 ```
 

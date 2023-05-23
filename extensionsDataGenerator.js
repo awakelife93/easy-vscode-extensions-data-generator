@@ -83,6 +83,8 @@ const getExtensionsData = (extensionsMetaData) => {
       return {
         extensionName: extensionFullNameSplit[1],
         extensionVersion: extensionMetaData.version,
+        extensionInstalledTimestamp:
+          extensionMetaData.metadata.installedTimestamp,
       };
     })
     .filter((extensionData) => extensionData !== ERRORS.IS_WRONG_NAME_FORMAT);
