@@ -8,22 +8,22 @@
 
 - Example Output
 
-```json
+```javascript
 [
   {
-    "extensionName": "auto-close-tag",
-    "extensionVersion": "0.5.14",
-    "extensionInstallTimestamp": 1683018107952
+    extensionName: "auto-close-tag",
+    extensionVersion: "0.5.14",
+    extensionInstallTimestamp: 1683018107952,
   },
   {
-    "extensionName": "code-spell-checker",
-    "extensionVersion": "2.20.4",
-    "extensionInstallTimestamp": 1683018140623
+    extensionName: "code-spell-checker",
+    extensionVersion: "2.20.4",
+    extensionInstallTimestamp: 1683018140623,
   },
   {
-    "extensionName": "material-icon-theme",
-    "extensionVersion": "4.27.0",
-    "extensionInstallTimestamp": 1683018160937
+    extensionName: "material-icon-theme",
+    extensionVersion: "4.27.0",
+    extensionInstallTimestamp: 1683018160937,
   },
   // ...
 ];
